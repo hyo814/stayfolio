@@ -6,7 +6,7 @@
 
   하단의 요구사항을 읽고 실제로 동작하는 React 코드를 작성해주세요.
 
-  `yarn dev`명령어를 통해 결과를 브라우져([http://localhost:3000)에서](http://localhost:3000)%EC%97%90%EC%84%9C/) 확인할 수 있어야 합니다.
+  `yarn dev`명령어를 통해 결과를 브라우져([http://localhost:3000)에서](http://localhost:3000)) 확인할 수 있어야 합니다.
 
   ### 준비
 

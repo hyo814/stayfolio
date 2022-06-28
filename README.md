@@ -1,34 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 프론트엔드 테스트
 
-## Getting Started
+---
 
-First, run the development server:
+- React 페이지 만들기
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+  하단의 요구사항을 읽고 실제로 동작하는 React 코드를 작성해주세요.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  `yarn dev`명령어를 통해 결과를 브라우져([http://localhost:3000)에서](http://localhost:3000)%EC%97%90%EC%84%9C/) 확인할 수 있어야 합니다.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+  ### 준비
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+    - Node.js
+    - [Next.js](https://github.com/zeit/next.js/)
+    - [json-server](https://github.com/typicode/json-server)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+  ### 요구사항
 
-## Learn More
+  [db.json](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/678463a0-4834-4f7e-98e6-c1a47f53d7c1/db.json)
 
-To learn more about Next.js, take a look at the following resources:
+  **API Server**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    - json-server를 사용하고 첨부된 `db.json`을 이용합니다.
+    - 개발 피시에서 `json-server`를 실행하고 사용합니다. (9000 port)
+        - `$ json-server -p 9000 db.json`
+    - API 명세는 다음과 같습니다.
+        - 리스트 - GET /stores
+        - 상세 - GET /stores/:id
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+  **Library & Framework**
 
-## Deploy on Vercel
+    - Next.js는 React를 기반으로 한 정적-서버 사이드 렌더링 프레임워크 입니다. github의 [README.md](https://github.com/zeit/next.js/)를 보고 사용법을 익힌
+      후 하단의 요구사항을 구현합니다.
+    - CSS 프레임워크를 한가지 골라서 적용합니다. [Material-UI](https://github.com/callemall/material-ui)
+      , [Ant-design](https://github.com/ant-design/ant-design)
+      , [React-Bootstrap](https://github.com/react-bootstrap/react-bootstrap)등 어떤 것도 괜찮습니다.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  **화면**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  맛집 리스트를 보여주고 리스트 중 하나의 아이템을 선택하면 팝업으로 상세 설명을 보여줍니다.
+
+    - 헤더 - 바디 - 푸터 형식으로 표현 =>  pages/_app.js (1번)
+    - 헤더에는 프로젝트이름(`AWESOME FOOD STORE`)과 메뉴(`ABOUT`+`STORE`) 표현
+      <br/> => (2번) pages/component/Header.js
+    - 푸터에는 카피라이트 추가(`@ 2022 내이름`) => (3번) pages/component/Footer.js
+    - ABOUT엔 간단한 프로젝트 소개 문구 표현 (정적 페이지) => (4번) pages/component/About.js
+    - STORE 리스트는 정사각형 이미지 그리드로 표현 (REST API 사용)
+      <br/> => (5번) 리스트 : pages/component/Store.js
+    - 하나의 아이템을 선택하면 팝업을 띄우고 맛집 이름과 사진, 설명, 홈페이지 바로가기(url이 있을 경우)를 표현
+      <br/> => (6번) 상세 페이지 : pages/component/Detail.js
+    - 팝업 오른쪽 위에 X버튼을 넣고 누르면 팝업이 닫힘
+      <br/> => (7번) 모달창 구현 : pages/component/Store.js 과 pages/component/Detail.js , 마지막으로
+      pages/component/BodyBlackout.js
+    - 정의하지 않은 url로 접근시 에러 페이지를 보여주고 5초 후 메인 페이지로 이동
+  <br/> => (8번) pages/404.js 랑 pages/500.js
+
+  ### 결과 샘플
+
+  [커먼그라운드 eat 화면](https://www.common-ground.co.kr/eat.html)을 참고하세요.
